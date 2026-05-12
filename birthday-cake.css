@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary-bg: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+    --accent-color: #ff4081;
+    --gold: #d4af37;
+    --text-color: #5d4037;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(-45deg, #fce4ec, #f3e5f5, #e1f5fe, #fff9c4);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================== Transitions */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================== Welcome Screen */
+#welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: var(--primary-bg);
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.welcome-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+}
+
+.welcome-card h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.btn-open {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+    font-weight: 600;
+}
+
+.btn-open:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 64, 129, 0.6);
+}
+
+/* ============================================== Main Content */
+#main-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#cake {
+    display: block;
+    width: auto;
+    height: 60vh;
+    max-height: 500px;
+}
+
+.text {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.text h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem; /* Increased from 3.5rem */
+    color: var(--accent-color);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 0.5rem;
+}
+
+.text p {
+    font-size: 1.8rem; /* Increased from 1.5rem */
+    font-weight: 300;
+    color: var(--text-color);
+    letter-spacing: 4px;
+}
+
+/* ============================================== Balloons */
+.balloons-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 100px;
+    height: 120px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: floatUp 15s linear infinite;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: rgba(0,0,0,0.1);
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    z-index: 1000;
+    top: -10px;
+    animation: confettiFall 4s ease-in-out infinite;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ============================================== Cake Animations */
+.velas {
+    background: #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    top:60vh; /* Adjusted to sit exactly on top of frosting */
+    left: 50%;
+    margin-left: -2.5px;
+    width: 5px;
+    height: 35px;
+    transform: translate(-50%, -300px);
+    z-index: 10;
+    animation: in 500ms 6.5s ease-out forwards;
+}
+
+.velas:after, .velas:before {
+    background: rgba(255, 0, 0, 0.4);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2.2px;
+}
+
+.velas:after { top: 25%; left: 0; }
+.velas:before { top: 45%; left: 0; }
+
+.fuego {
+    border-radius: 100%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -3.3px;
+    width: 6.6px;
+    height: 18px;
+}
+
+.fuego:nth-child(1) { animation: fuego 2s 6.5s infinite; }
+.fuego:nth-child(2) { animation: fuego 1.5s 6.5s infinite; }
+.fuego:nth-child(3) { animation: fuego 1s 6.5s infinite; }
+.fuego:nth-child(4) { animation: fuego 0.5s 6.5s infinite; }
+.fuego:nth-child(5) { animation: fuego 0.2s 6.5s infinite; }
+
+@keyframes fuego {
+    0%, 100% { background: rgba(254, 248, 97, 0.9); box-shadow: 0 0 20px 5px rgba(248, 233, 209, 0.5); transform: translateY(0) scale(1); }
+    50% { background: rgba(255, 50, 0, 0.5); box-shadow: 0 0 30px 10px rgba(248, 233, 209, 0.5); transform: translateY(-10px) scale(0.8); }
+}
+
+@keyframes in {
+    to { transform: translate(-50%, -100%); }
+}
+
+/* ============================================== Responsiveness */
+@media (max-width: 600px) {
+    .text h1 { font-size: 2.5rem; }
+    .text p { font-size: 1.2rem; }
+    #cake { height: 40vh; }
+    .velas { top: 56vh; }
+    .welcome-card { padding: 2rem; }
+    .welcome-card h2 { font-size: 2.5rem; }
+}
+
